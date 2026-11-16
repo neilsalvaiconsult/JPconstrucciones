@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jesús Peña | Maestro de Obra Civil</title>
+    <style>
+        :root {
+            --primary: #d97706; /* Naranja/Ámbar construcción */
+            --primary-dark: #b45309;
+            --dark: #1f2937;
+            --gray: #4b5563;
+            --light: #f3f4f6;
+            --white: #ffffff;
+            --whatsapp: #25D366;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.5;
+            padding-bottom: 80px; /* Espacio para el botón flotante */
+        }
+
+        .container {
+            max-width: 600px; /* Ancho ideal para vista móvil y tablet */
+            margin: 0 auto;
+            background: var(--white);
+            min-height: 100vh;
+            box-shadow: 0 0 15px rgba(0,0,0,0.05);
+        }
+
+        /* Cabecera / Perfil */
+        header {
+            /* La capa oscura (rgba 0.78 - 0.88) asegura que el texto blanco siempre sea legible */
+            background: linear-gradient(rgba(31, 41, 55, 0.78), rgba(31, 41, 55, 0.88)), 
+                url('img/fondo-header.jpg');
+            background-size: cover;      /* Ajusta la imagen sin deformarla */
+            background-position: center; /* Centra el encuadre en celulares */
+            color: var(--white);
+            text-align: center;
+            padding: 40px 20px 35px;
+            border-bottom: 5px solid var(--primary);
+        }
+
+        .profile-img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+            margin-bottom: 12px;
+            background-color: #374151;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .profile-img:active {
+            transform: scale(0.95);
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 4px;
+        }
+
+        header .subtitle {
+            color: #fbbf24;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        header .exp-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        /* Secciones generales */
+        section {
+            padding: 25px 20px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        h2::before {
+            content: "";
+            display: inline-block;
+            width: 5px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Lista de Servicios */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .service-item {
+            background: var(--light);
+            padding: 12px 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        /* Galería de Proyectos */
+        .hint-text {
+            font-size: 0.8rem;
+            color: #6b7280;
+            margin-top: -10px;
+            margin-bottom: 12px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .project-card {
+            background: var(--light);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .project-card:active {
+            transform: scale(0.97);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 130px;
+            object-fit: cover;
+            display: block;
+            background-color: #d1d5db;
+        }
+
+        .project-card .caption {
+            padding: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--dark);
+            text-align: center;
+        }
+
+        /* Zona y Contacto */
+        .info-box {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .info-box strong {
+            color: var(--primary-dark);
+        }
+
+        /* Botón Flotante de WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 560px;
+            background-color: var(--whatsapp);
+            color: var(--white);
+            text-align: center;
+            padding: 14px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.05rem;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .whatsapp-float:active {
+            transform: translateX(-50%) scale(0.98);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: #9ca3af;
+        }
+
+        footer a {
+            color: #6b7280;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* --- ESTILOS DEL VISOR MODAL (LIGHTBOX) --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.92);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.2s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            max-width: 100%;
+            max-height: 75vh;
+            border-radius: 8px;
+            object-fit: contain;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .modal-caption {
+            color: var(--white);
+            margin-top: 15px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: center;
+            max-width: 90%;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: var(--white);
+            font-size: 36px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- CABECERA -->
+        <header>
+            <img src="img/logo.jpeg" alt="Jesús Peña - Maestro de Obra Civil" class="profile-img zoomable">
+            <h1>Jesús Peña</h1>
+            <div class="subtitle">Maestro de Obra de Construcción Civil</div>
+            <span class="exp-badge">🛠️ +10 años de experiencia</span>
+        </header>
+
+        <!-- SOBRE MÍ -->
+        <section>
+            <h2>Sobre mi trabajo</h2>
+            <p>
+                Especialista en ejecución de obras civiles, ampliaciones y remodelaciones integrales. Trabajo con responsabilidad, lectura exacta de planos, optimización de materiales y cumplimiento de plazos garantizado.
+            </p>
+        </section>
+
+        <!-- SERVICIOS -->
+        <section>
+            <h2>Servicios Principales</h2>
+            <div class="services-grid">
+                <div class="service-item">🏗️ Casco estructural, cimientos, columnas y losas aligeradas</div>
+                <div class="service-item">🧱 Albañilería en general (asentado de ladrillo, tarrajeo)</div>
+                <div class="service-item">✨ Acabados, enchapes de porcelanato, mayólica y pintura</div>
+                <div class="service-item">🏠 Remodelaciones, ampliaciones y drywall</div>
+                <div class="service-item">📐 Lectura de planos, metrados y presupuestos de mano de obra</div>
+            </div>
+        </section>
+
+        <!-- PROYECTOS -->
+        <section>
+            <h2>Obras Realizadas</h2>
+            <p class="hint-text">👆 Toca cualquier foto para verla en pantalla completa</p>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="img/obra1.jpg" alt="Construcción de vivienda" class="zoomable">
+                    <div class="caption">Vivienda Multifamiliar (3 pisos)</div>
+                </div>
+                <div class="project-card">
+                    <img src="img/obra2.jpg" alt="Enchape y acabados" class="zoomable">
+                    <div class="caption">Enchape de Porcelanato y Cocina</div>
+                </div>
+                <div class="project-card">
+                    <img src="img/obra3.jpg" alt="Techo aligerado" class="zoomable">
+                    <div class="caption">Encofrado y Vaciado de Techo</div>
+                </div>
+                <div class="project-card">
+                    <img src="img/obra4.jpg" alt="Fachada terminada" class="zoomable">
+                    <div class="caption">Remodelación de Fachada</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ZONA DE TRABAJO -->
+        <section>
+            <h2>Cobertura y Presupuestos</h2>
+            <div class="info-box">
+                <p><strong>📍 Zona de trabajo:</strong> Lima Metropolitana y alrededores (visitas técnicas previa coordinación).</p>
+                <p style="margin-top: 8px;"><strong>📋 Cotizaciones:</strong> Presupuestos a todo costo o solo mano de obra.</p>
+            </div>
+        </section>
+
+        <footer>
+            <div>WhatsApp para Implementación de Aplicación Web: <a href="https://wa.me/51992694204" target="_blank">992 694 204</a></div>
+            <div>Copyright &copy; 2026 - NAiconsult - Lima - Perú</div>
+        </footer>
+    </div>
+
+    <!-- BOTÓN FLOTANTE DE WHATSAPP -->
+    <a href="https://wa.me/51992694202?text=Hola,%20vi%20su%20página%20web%20y%20quisiera%20consultar%20por%20un%20trabajo%20de%20construcción." class="whatsapp-float" target="_blank">
+        💬 Presiona Aquí para Cotizar tu Obra por WhatsApp
+    </a>
+
+    <!-- VISOR MODAL EN PANTALLA COMPLETA -->
+    <div id="imageModal" class="modal" onclick="closeModal(event)">
+        <span class="close-btn" onclick="forceCloseModal()">&times;</span>
+        <img class="modal-content" id="modalImg" src="" alt="">
+        <div id="modalCaption" class="modal-caption"></div>
+    </div>
+
+    <script>
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImg");
+        const modalCaption = document.getElementById("modalCaption");
+
+        document.querySelectorAll('.zoomable').forEach(img => {
+            img.addEventListener('click', function() {
+                modal.style.display = "flex";
+                modalImg.src = this.src;
+                
+                // Si la imagen está dentro de una tarjeta con .caption, toma ese título; si no, usa el alt
+                const card = this.closest('.project-card');
+                const captionEl = card ? card.querySelector('.caption') : null;
+                modalCaption.textContent = captionEl ? captionEl.textContent : this.alt;
+            });
+        });
+
+        function closeModal(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        function forceCloseModal() {
+            modal.style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
